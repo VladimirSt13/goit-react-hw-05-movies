@@ -1,11 +1,12 @@
 // import { MoviesList } from '../components/ProductList';
 import { useEffect, useState } from 'react';
 import { getMoviesList } from '../api/fetchMovies';
+import { MoviesList } from './../MovieList/MoviesList';
 
 export const MoviesHome = () => {
   const [moviesList, setMoviesList] = useState([]);
-  // const [error, setError] = useState(null);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     console.log('useEfect');
@@ -14,30 +15,27 @@ export const MoviesHome = () => {
   }, []);
 
   const fetchData = async () => {
-    // setIsLoading(true);
+    setIsLoading(true);
     try {
       const moviesList = await getMoviesList();
       setMoviesList(moviesList.results);
     } catch (error) {
       console.log('error :>> ', error);
-      // setError(`No data in fetch moviesList ${error}`);
+      setError(`No data in fetch moviesList ${error}`);
     } finally {
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
   return (
-    <div>
-      <aside>
-        <h1>Trending today</h1>
-        <ul>
-          {moviesList.map(movie => {
-            console.log(movie, movie.id, movie.title);
-            return <li key={movie.id}>{movie.title}</li>;
-          })}
-        </ul>
-      </aside>
-    </div>
+    <>
+      {!isLoading ? (
+        <MoviesList moviesList={moviesList} />
+      ) : (
+        <div>Loading ...</div>
+      )}
+      {error && <div>Try again later</div>}
+    </>
   );
 };
 
