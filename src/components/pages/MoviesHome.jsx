@@ -4,8 +4,8 @@ import { getMoviesList } from '../api/fetchMovies';
 
 export const MoviesHome = () => {
   const [moviesList, setMoviesList] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     console.log('useEfect');
@@ -14,14 +14,15 @@ export const MoviesHome = () => {
   }, []);
 
   const fetchData = async () => {
-    setIsLoading(true);
+    // setIsLoading(true);
     try {
       const moviesList = await getMoviesList();
       setMoviesList(moviesList.results);
     } catch (error) {
-      setError(`No data in fetch moviesList ${error}`);
+      console.log('error :>> ', error);
+      // setError(`No data in fetch moviesList ${error}`);
     } finally {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   };
 
