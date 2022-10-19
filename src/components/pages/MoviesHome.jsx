@@ -1,7 +1,7 @@
 // import { MoviesList } from '../components/ProductList';
 import { useEffect, useState } from 'react';
 import { getMoviesList } from '../api/fetchMovies';
-import { MoviesList } from './../MovieList/MoviesList';
+import { MoviesList } from '../MoviesList/MoviesList';
 
 export const MoviesHome = () => {
   const [moviesList, setMoviesList] = useState([]);
@@ -30,7 +30,7 @@ export const MoviesHome = () => {
   return (
     <>
       {!isLoading ? (
-        <MoviesList moviesList={moviesList} />
+        <MoviesList title="Trending today" moviesList={moviesList} />
       ) : (
         <div>Loading ...</div>
       )}
@@ -38,6 +38,3 @@ export const MoviesHome = () => {
     </>
   );
 };
-
-// moviesList.map(movie => console.log(movie))
-// console.log(moviesList)

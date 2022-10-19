@@ -1,8 +1,8 @@
-export const MoviesList = ({ moviesList }) => {
+export const MoviesList = ({ title, moviesList }) => {
   return (
     <div>
       <aside>
-        <h1>Trending today</h1>
+        <h1>{title}</h1>
         <ul>
           {moviesList.map(movie => {
             console.log(movie, movie.id, movie.title);
