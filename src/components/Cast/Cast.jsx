@@ -12,21 +12,21 @@ export const Cast = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const cast = await getMovieCast(id);
+        setCast(cast);
+        console.log('cast', cast);
+      } catch (error) {
+        setError(`No data in fetch MovieCast ${error}`);
+      } finally {
+        setIsLoading(false);
+      }
+    };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const cast = await getMovieCast(id);
-      setCast(cast);
-      console.log('cast', cast);
-    } catch (error) {
-      setError(`No data in fetch MovieCast ${error}`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <>

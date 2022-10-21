@@ -18,20 +18,20 @@ export const MovieDetails = () => {
   const backLinkHref = location.state?.from ?? '/movies';
 
   useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const movie = await getDataMovie(id);
+        setMovie(movie);
+      } catch (error) {
+        setError(`No data in fetch MovieDetails ${error}`);
+      } finally {
+        setIsLoading(false);
+      }
+    };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const movie = await getDataMovie(id);
-      setMovie(movie);
-    } catch (error) {
-      setError(`No data in fetch MovieDetails ${error}`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <WrapperStyled>
