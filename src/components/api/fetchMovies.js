@@ -20,6 +20,19 @@ export const getMoviesList = async (page = 1, language = 'en') => {
   }
 };
 
+// Повна інформація про фільм
+export const getDataMovie = async (id, language = 'en') => {
+  try {
+    const server = await axios.get(
+      `3/movie/${id}?api_key=${KEY}&language=${language}`
+    );
+    const data = await server.data;
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // пошук по ключовому слову
 export const dataSearch = async (name, page = 1, language = 'en') => {
   try {
@@ -34,13 +47,13 @@ export const dataSearch = async (name, page = 1, language = 'en') => {
 };
 
 // Список акторів
-export const dataAuthors = async (id, language = 'en') => {
+export const getMovieCast = async (id, language = 'en') => {
   try {
     const server = await axios.get(
       `3/movie/${id}/credits?api_key=${KEY}&language=${language}`
     );
     const data = await server.data;
-    return data;
+    return data.cast;
   } catch (error) {
     console.error(error);
   }
