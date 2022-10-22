@@ -5,7 +5,7 @@ import { CastList } from './Cast.styled';
 import { Loading } from 'components/common/Loading';
 import { Error } from 'components/common/Error';
 
-export const Cast = () => {
+const Cast = () => {
   const { id } = useParams();
   const [cast, setCast] = useState([]);
   const [error, setError] = useState(null);
@@ -59,3 +59,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;

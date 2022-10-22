@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   padding: ${p => p.theme.space[3]}px;
-  border-bottom: 1px solid black;
+  border-bottom: ${p => p.theme.borders.normal} ${p => p.theme.colors.black};
 `;
 
 export const Title = styled.p`
@@ -16,8 +16,8 @@ export const List = styled.ul`
 `;
 
 export const Link = styled(NavLink)`
-  padding: 8px 16px;
-  border-radius: 4px;
+  padding: ${p => p.theme.space[3]}px ${p => p.theme.space[4]}px;
+  border-radius: ${p => p.theme.radii.normal}px;
   text-decoration: none;
   color: black;
   font-weight: ${p => p.theme.fontWeights.semiBold};

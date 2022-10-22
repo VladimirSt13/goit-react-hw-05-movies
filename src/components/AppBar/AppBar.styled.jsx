@@ -12,17 +12,16 @@ export const Header = styled.header`
 
   > nav {
     display: flex;
-    padding: 0 ${p => p.theme.space[5]}px;
-
     gap: ${p => p.theme.space[5]}px;
+    padding: 0 ${p => p.theme.space[5]}px;
   }
 `;
 
 export const Link = styled(NavLink)`
-  padding: 8px 16px;
-  border-radius: 4px;
+  padding: ${p => p.theme.space[3]}px ${p => p.theme.space[4]}px;
+  border-radius: ${p => p.theme.radii.normal}px;
   text-decoration: none;
-  color: black;
+  color: ${p => p.theme.colors.black};
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.m};
 

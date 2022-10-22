@@ -5,7 +5,7 @@ import { ReviewsList } from './Revies.styled';
 import { Loading } from 'components/common/Loading';
 import { Error } from 'components/common/Error';
 
-export const Reviews = () => {
+const Reviews = () => {
   const { id } = useParams();
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(null);
@@ -48,3 +48,5 @@ export const Reviews = () => {
     </>
   );
 };
+
+export default Reviews;

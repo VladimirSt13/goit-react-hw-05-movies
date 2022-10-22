@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SearchBox } from 'components/SearchBox/SearchBox.';
-import { getMovieByQuery } from '../api/fetchMovies';
-import { Wrapper } from '../common/Wrapper';
-import { MoviesList } from './../MoviesList/MoviesList';
+import { getMovieByQuery } from '../components/api/fetchMovies';
+import { Wrapper } from '../components/common/Wrapper';
+import { MoviesList } from '../components/MoviesList/MoviesList';
 import { Loading } from 'components/common/Loading';
 import { Error } from 'components/common/Error';
 
-export const SearchMovies = () => {
+const SearchMovies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [moviesList, setMoviesList] = useState([]);
   const [error, setError] = useState(null);
@@ -49,3 +49,5 @@ export const SearchMovies = () => {
     </Wrapper>
   );
 };
+
+export default SearchMovies;

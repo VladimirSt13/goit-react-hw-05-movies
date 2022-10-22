@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getDataMovie } from 'components/api/fetchMovies';
 import { Wrapper } from 'components/common/Wrapper';
 import { BackLink } from 'components/common/BackLink';
-import { MovieCard } from './../MovieCard/MovieCard';
+import { MovieCard } from '../components/MovieCard/MovieCard';
 import { Loading } from 'components/common/Loading';
-import { AdditionalInfo } from './../AdditionalInfo/AdditionalInfo';
+import { AdditionalInfo } from '../components/AdditionalInfo/AdditionalInfo';
 import { Error } from 'components/common/Error';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [error, setError] = useState(null);
@@ -18,7 +18,6 @@ export const MovieDetails = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log('MovD', Date.now());
     setBackLinkHref(location.state?.from ?? '/movies');
     const fetchData = async () => {
       setIsLoading(true);
@@ -44,10 +43,14 @@ export const MovieDetails = () => {
           <BackLink to={backLinkHref}>Go back</BackLink>
           <MovieCard movie={movie} />
           <AdditionalInfo />
-          <Outlet />
+          <Suspense fallback={<Loading />}>
+            <Outlet />
+          </Suspense>
         </>
       )}
       {error && <Error />}
     </Wrapper>
   );
 };
+
+export default MovieDetails;
