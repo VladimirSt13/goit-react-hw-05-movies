@@ -13,12 +13,13 @@ export const MovieDetails = () => {
   const [movie, setMovie] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [backLinkHref, setBackLinkHref] = useState('');
 
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
-  console.log('backLinkHref', backLinkHref);
 
   useEffect(() => {
+    console.log('MovD', Date.now());
+    setBackLinkHref(location.state?.from ?? '/movies');
     const fetchData = async () => {
       setIsLoading(true);
       try {
@@ -42,7 +43,7 @@ export const MovieDetails = () => {
         <>
           <BackLink to={backLinkHref}>Go back</BackLink>
           <MovieCard movie={movie} />
-          <AdditionalInfo from={backLinkHref} />
+          <AdditionalInfo />
           <Outlet />
         </>
       )}

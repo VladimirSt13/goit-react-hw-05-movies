@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import {
   Wrapper,
@@ -37,17 +37,17 @@ export const MovieCard = ({ movie }) => {
   );
 };
 
-// MovieCard.propTypes = {
-//   movie: PropTypes.shape({
-//     poster_path: PropTypes.string.isRequired,
-//     title: PropTypes.string.isRequired,
-//     vote_average: PropTypes.number.isRequired,
-//     vote_count: PropTypes.number.isRequired,
-//     overview: PropTypes.string.isRequired,
-//     genres: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         name: PropTypes.string.isRequired,
-//       })
-//     ).isRequired,
-//   }).isRequired,
-// };
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    vote_count: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
+};

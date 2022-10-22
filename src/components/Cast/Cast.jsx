@@ -30,7 +30,7 @@ export const Cast = () => {
   return (
     <>
       {isLoading && <Loading />}
-      {cast && (
+      {cast.length > 0 ? (
         <CastList>
           {cast.map(({ id, profile_path, name, character }) => {
             return (
@@ -52,6 +52,8 @@ export const Cast = () => {
             );
           })}
         </CastList>
+      ) : (
+        <div>There is nothing here</div>
       )}
       {error && <Error />}
     </>

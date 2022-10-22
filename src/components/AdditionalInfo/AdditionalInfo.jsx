@@ -1,28 +1,17 @@
-import PropTypes from 'prop-types';
-
 import { Title, List, Link, Wrapper } from './AdditionalInfo.styled';
 
-export const AdditionalInfo = ({ from }) => {
-  console.log('from', from);
+export const AdditionalInfo = () => {
   return (
     <Wrapper>
       <Title>Additional info:</Title>
       <List>
         <li>
-          <Link to={'cast'} state={from}>
-            Cast
-          </Link>
+          <Link to={'cast'}>Cast</Link>
         </li>
         <li>
-          <Link to={'reviews'} state={from}>
-            Review
-          </Link>
+          <Link to={'reviews'}>Review</Link>
         </li>
       </List>
     </Wrapper>
   );
-};
-
-AdditionalInfo.propTypes = {
-  from: PropTypes.string,
 };

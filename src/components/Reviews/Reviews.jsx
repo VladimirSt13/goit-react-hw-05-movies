@@ -42,7 +42,7 @@ export const Reviews = () => {
           })}
         </ReviewsList>
       ) : (
-        <p>There are no reviews</p>
+        <p>There is nothing here</p>
       )}
       {error && <Error />}
     </>
