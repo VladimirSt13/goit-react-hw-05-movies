@@ -32,8 +32,12 @@ export const MovieCard = ({ movie }) => {
         <p>User score: {userScore}%</p>
         <h3>Owerview</h3>
         <p>{overview}</p>
-        <h3>Genres</h3>
-        <p>{genres}</p>
+        {genres && (
+          <>
+            <h3>Genres</h3>
+            <p>{genres}</p>
+          </>
+        )}
       </MovieWrapper>
     </Wrapper>
   );

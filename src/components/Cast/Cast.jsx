@@ -4,6 +4,7 @@ import { getMovieCast } from '../api/fetchMovies';
 import { CastList } from './Cast.styled';
 import { Loading } from 'components/common/Loading';
 import { Error } from 'components/common/Error';
+import { filterUnicObjInArray } from 'utils/helpers';
 
 const Cast = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const Cast = () => {
       setIsLoading(true);
       try {
         const cast = await getMovieCast(id);
-        setCast(cast);
+        setCast(filterUnicObjInArray(cast));
       } catch (error) {
         setError(`No data in fetch MovieCast ${error}`);
       } finally {
