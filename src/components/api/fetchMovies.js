@@ -34,7 +34,7 @@ export const getDataMovie = async (id, language = 'en') => {
 };
 
 // пошук по ключовому слову
-export const dataSearch = async (name, page = 1, language = 'en') => {
+export const getMovieByQuery = async (name, page = 1, language = 'en') => {
   try {
     const server = await axios.get(
       `3/search/movie?api_key=${KEY}&language=${language}&query=${name}&page=${page}&include_adult=false`
@@ -54,6 +54,19 @@ export const getMovieCast = async (id, language = 'en') => {
     );
     const data = await server.data;
     return data.cast;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// Список відгуки
+export const getMovieReviews = async (id, language = 'en') => {
+  try {
+    const server = await axios.get(
+      `3/movie/${id}/reviews?api_key=${KEY}&language=${language}`
+    );
+    const data = await server.data;
+    return data.results;
   } catch (error) {
     console.error(error);
   }

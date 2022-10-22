@@ -1,53 +1,34 @@
-import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getMoviesList } from '../api/fetchMovies';
-import { List, Title, ListItem, MovieLink } from './MoviesList.styled';
-import { Loading } from 'components/common/Loading';
-import { Error } from 'components/common/Error';
+import PropTypes from 'prop-types';
 
-export const MoviesList = ({ title }) => {
+import { useLocation } from 'react-router-dom';
+
+import { List, Title, ListItem, MovieLink } from './MoviesList.styled';
+
+export const MoviesList = ({ title, moviesList }) => {
   const location = useLocation();
 
-  const [moviesList, setMoviesList] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    try {
-      const moviesList = await getMoviesList();
-      setMoviesList(moviesList.results);
-    } catch (error) {
-      console.log('error :>> ', error);
-      setError(`No data in fetch moviesList ${error}`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
-    <>
-      <Title>{title}</Title>
-      {!isLoading ? (
-        <List>
-          {moviesList.map(({ id, title }) => {
-            return (
-              <ListItem key={id}>
-                <MovieLink to={`/movies/${id}`} state={{ from: location }}>
-                  {title}
-                </MovieLink>
-              </ListItem>
-            );
-          })}
-        </List>
-      ) : (
-        <Loading />
-      )}
-      {error && <Error />}
-    </>
+    <List>
+      {title && <Title>{title}</Title>}
+      {moviesList.map(({ id, title }) => {
+        return (
+          <ListItem key={id}>
+            <MovieLink to={`/movies/${id}`} state={{ from: location }}>
+              {title}
+            </MovieLink>
+          </ListItem>
+        );
+      })}
+    </List>
   );
+};
+
+MoviesList.propTypes = {
+  title: PropTypes.string,
+  moviesList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
 };

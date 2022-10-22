@@ -17,7 +17,6 @@ export const Cast = () => {
       try {
         const cast = await getMovieCast(id);
         setCast(cast);
-        console.log('cast', cast);
       } catch (error) {
         setError(`No data in fetch MovieCast ${error}`);
       } finally {
@@ -33,7 +32,7 @@ export const Cast = () => {
       {isLoading && <Loading />}
       {cast && (
         <CastList>
-          {cast.map(({ id, profile_path, character }) => {
+          {cast.map(({ id, profile_path, name, character }) => {
             return (
               <li key={id}>
                 <img
@@ -42,11 +41,13 @@ export const Cast = () => {
                       ? `https://image.tmdb.org/t/p/w500/${profile_path}`
                       : 'https://dw.ksdr1.net/wp-content/uploads/sites/2/2018/08/photo-coming-soon.jpg'
                   }
-                  alt={character}
+                  alt={name}
                   width="150"
                   height="225"
                 />
-                <p>{character}</p>
+                <p>
+                  {name} as {character}
+                </p>
               </li>
             );
           })}

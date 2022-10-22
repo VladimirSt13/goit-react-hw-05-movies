@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import {
   Wrapper,
   MovieWrapper,
@@ -16,7 +18,10 @@ export const MovieCard = ({ movie }) => {
 
   const userScore = Math.round((vote_average / vote_count) * 100);
   const genres = genresData && genresData.map(({ name }) => name).join(', ');
-  const fullPosterPath = `https://image.tmdb.org/t/p/w500/${poster_path}`;
+  const fullPosterPath = poster_path
+    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+    : 'https://upload.wikimedia.org/wikipedia/commons/6/64/Poster_not_available.jpg';
+
   return (
     <Wrapper>
       <img src={fullPosterPath} alt="{title}" width="300" height="450" />
@@ -30,4 +35,19 @@ export const MovieCard = ({ movie }) => {
       </MovieWrapper>
     </Wrapper>
   );
+};
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    vote_count: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
 };

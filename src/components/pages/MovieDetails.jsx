@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { getDataMovie } from 'components/api/fetchMovies';
-import { WrapperStyled } from 'components/common/Wrapper.styled';
+import { Wrapper } from 'components/common/Wrapper';
 import { BackLink } from 'components/common/BackLink';
 import { MovieCard } from './../MovieCard/MovieCard';
 import { Loading } from 'components/common/Loading';
@@ -34,7 +34,7 @@ export const MovieDetails = () => {
   }, []);
 
   return (
-    <WrapperStyled>
+    <Wrapper>
       {isLoading && <Loading />}
 
       {movie && (
@@ -46,6 +46,6 @@ export const MovieDetails = () => {
         </>
       )}
       {error && <Error />}
-    </WrapperStyled>
+    </Wrapper>
   );
 };
