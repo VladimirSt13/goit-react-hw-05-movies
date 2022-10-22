@@ -46,7 +46,7 @@ const Cast = () => {
                   height="225"
                 />
                 <p>
-                  {name} as {character}
+                  {name} {character && <span>as {character}</span>}
                 </p>
               </li>
             );

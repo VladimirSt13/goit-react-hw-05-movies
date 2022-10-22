@@ -16,7 +16,9 @@ export const MovieCard = ({ movie }) => {
     genres: genresData,
   } = movie;
 
-  const userScore = Math.round((vote_average / vote_count) * 100);
+  const userScore = vote_average
+    ? Math.round((vote_average / vote_count) * 100)
+    : 0;
   const genres = genresData && genresData.map(({ name }) => name).join(', ');
   const fullPosterPath = poster_path
     ? `https://image.tmdb.org/t/p/w500/${poster_path}`
