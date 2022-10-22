@@ -16,6 +16,7 @@ export const MovieDetails = () => {
 
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
+  console.log('backLinkHref', backLinkHref);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +42,7 @@ export const MovieDetails = () => {
         <>
           <BackLink to={backLinkHref}>Go back</BackLink>
           <MovieCard movie={movie} />
-          <AdditionalInfo from={{ from: location.state?.from ?? '/' }} />
+          <AdditionalInfo from={backLinkHref} />
           <Outlet />
         </>
       )}
